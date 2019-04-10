@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // ===== BUNDLE OF CONFIGURATIONS======== //
 // ======================================//
 require('dotenv').config();
