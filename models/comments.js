@@ -2,7 +2,7 @@ const db = require('./conn');
 const db = require('./users');
 const db = require('./space');
 
-lass Comments {
+class Comments {
 
     constructor(id, content, user_id, space_id) {
         this.id = id;
@@ -20,10 +20,10 @@ lass Comments {
         // using ($) so that pg-promise does *safe* interpolation
         return db.one(`
         insert into comments
-            (id, content, user_id, unicorn_id, place_id)
+            (id, content, user_id, space_id)
         values 
             ($1, $2, $3, $4, $5)
-        returning id, content, user_id, unicorn_id, place_id
+        returning id, content, user_id, space_id
         `, [commentData.content, commentData.user_id, commentData.space_id])
             .then((data) => {
                 console.log(data);
@@ -31,7 +31,7 @@ lass Comments {
                 console.log(`new comment id is ${data.id}`);
                 return data.id;
             })
-        // and return the id of the new unicorn
+        // and return the id of the new comment
     }
 
     static getByUserId(userId) {
