@@ -1,6 +1,6 @@
 const db = require('./conn');
-const db = require('./users');
-const db = require('./space');
+const Users = require('./users');
+const Space = require('./space');
 
 class Comments {
 

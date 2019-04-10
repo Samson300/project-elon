@@ -1,4 +1,4 @@
-const db = require('./connect');
+const db = require('./conn');
 
 const bcrypt = require('bcryptjs');
 
