@@ -22,7 +22,7 @@ class Comments {
         insert into comments
             (id, content, user_id, space_id)
         values 
-            ($1, $2, $3, $4, $5)
+            ($1, $2, $3, $4)
         returning id, content, user_id, space_id
         `, [commentData.content, commentData.user_id, commentData.space_id])
             .then((data) => {
