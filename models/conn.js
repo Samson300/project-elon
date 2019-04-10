@@ -7,7 +7,7 @@ const pgp = require('pg-promise')({
 const options = {
     host: 'localhost',
     // Need to add database name
-    database: ''
+    database: 'ElonDB'
 }
 
 const db = pgp(options);
