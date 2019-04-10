@@ -1,4 +1,5 @@
 const User = require('../models/users');
+const Comments = require('../models/comments');
 
 
 
@@ -6,5 +7,5 @@ const User = require('../models/users');
 
 
 module.exports = {
-
+    // function names go here
 };
