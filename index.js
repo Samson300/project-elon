@@ -3,7 +3,7 @@
 require('dotenv').config();
 
 const express = require('express'); // Bring in the express library.
-//const es6Renderer = require('express-es6-template-engine');
+const es6Renderer = require('express-es6-template-engine');
 
 const app = express();   // Create a new express app.
 
@@ -27,7 +27,7 @@ app.use(express.static('public'))
 // const hostname = '127.0.0.1';
 const port = process.env.PORT;
 
-//app.engine('html', es6Renderer); 
+app.engine('html', es6Renderer); 
 app.set('view engine', 'html') 
 app.set('views', 'views'); // tell express where to find the new files
 app.use(express.urlencoded({ extended: true })); // use this middleware! 
@@ -39,6 +39,7 @@ app.use(express.urlencoded({ extended: true })); // use this middleware!
 const User = require('./models/users');
 const Space = require('./models/space');
 const Comments = require('./models/comments');
+//console.log('this is my user model', User);
 
 app.get('/login', (req, res) => {
     res.render('login-form', {
@@ -50,14 +51,16 @@ app.get('/login', (req, res) => {
 });
 
 // ADD A USER //
-// async function newUser() {
-//     const user = await User.getbyEmail('')
+// async function demo() {
+//     const user = await User.getByEmail('j.bergdorff@sparkleapp.com')
 //     user.setPassword('password');
 //     await user.save();
-//     console.log('You added a new user')
+//     console.log('==================')
+//     console.log('You did a thing!')
+//     console.log('^^^^^^^^^^^^^^^^^^')
 // }
 
-// newUser();
+//demo();
 
 const escapeHTML = require('./utils');
 
@@ -71,7 +74,10 @@ app.post('/login', async (req, res) => {
 
     const theEmail = escapeHTML(req.body.email);
     const thePassword = escapeHTML(req.body.password);
-    const theUser = await User.getbyEmail(theEmail);
+    const theUser = await User.getByEmail(theEmail);
+    console.log('=====================');
+    console.log(theUser);
+    console.log('^^^^^^^^^^^^^^^^^^^^^^')
     const passwordIsCorrect = theUser.checkPassword(thePassword);
 
     if (passwordIsCorrect) {
@@ -97,6 +103,31 @@ app.get('/login', (res, req) => {
         }
     })
 })
+
+app.get('/dashboard', async (req, res) => {
+    console.log('GETting the Dashboard')
+    res.render('dashboard')
+    //const theUnicorns = await Unicorn.getByUserId(2);
+    //res.json(theUnicorns)
+    //console.log(theUnicorns);
+    
+});
+    
+
+
+app.get('/users', async (req, res) => {
+    const allUsers = await User.getAll();
+    res.json(allUsers);
+});
+
+app.get('/users/:id', async (req, res) => {
+    // How to grab a piece out of req.params (or any object):
+    // const id = req.params.id;
+    // This is known as "destructuring"
+    const {id} = req.params;
+    const theUser = await User.getById(id);
+    res.json(theUser);
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
