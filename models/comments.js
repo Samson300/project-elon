@@ -2,7 +2,7 @@ const db = require('./conn');
 const db = require('./users');
 const db = require('./space');
 
-lass Comments {
+class Comments {
 
     constructor(id, content, user_id, space_id) {
         this.id = id;
