@@ -6,14 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script scr="/models/facts.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
         <style type="text/css">
-            
-            h1, h4, p, tr, td, th {
+            body {
+                background-image: url('https://i.kinja-img.com/gawker-media/image/upload/s--tppk5Bdm--/c_scale,f_auto,fl_progressive,q_80,w_800/ohnsrbkzuwreffocgte9.jpg');
+                background-size: 100vw;
+                background-color: beige;
+            }
+            h1, h4, tr, td, th {
                 text-align: center;
-                color: black;
+                color: white;
                 text-shadow: 2px 2px silver;
 
             }
@@ -39,89 +47,28 @@
         
     <h1>Welcome to your dashboard</h1>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+    <div class='facts'>
+        <style>
+            p {
+                font-size: 2em;
+            }
 
-<div class="container">
-            <div class="row blog">
-                <div class="col-md-12">
-                    <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+            .facts {
+                display: flex;
+                margin-top: 4em;
+                flex-wrap: none;
+                margin-left: 25%;
+                text-align: center;
+                background: black;
+                color: white;
+                text-shadow: none;
+                width: 50%;
+                height: 100%;
+            }
+        </style>
 
-                        <ol class="carousel-indicators">
-                            <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#blogCarousel" data-slide-to="1"></li>
-                        </ol>
-
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
-
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                        </a>
-                                    </div>
-                                </div>
-                                <!--.row-->
-                            </div>
-                            <!--.item-->
-
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#">
-                                            <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                        </a>
-                                    </div>
-                                </div>
-                                <!--.row-->
-                            </div>
-                            <!--.item-->
-
-                        </div>
-                        <!--.carousel-inner-->
-                    </div>
-                    <!--.Carousel-->
-
-                </div>
-            </div>
-</div>
-    <div>
         <p>${saying}</p>
+
     </div>
 </body>
 </html>
