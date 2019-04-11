@@ -128,6 +128,8 @@ app.get('/users/:id', async (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
     console.log('GETting the Dashboard')
+    // grab random facts from the database.
+    
     const theFacts = await Facts.getRandom();
     //res.json(theFacts)
     console.log('======================');
