@@ -8,9 +8,9 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "db:create": "createdb facts",
-    "db:init": "psql -f schema.sql facts && psql -f seed.sql facts",
-    "db:destroy": "dropdb facts",
+    "db:create": "createdb ElonDB",
+    "db:init": "psql -f schema.sql ElonDB && psql -f seed.sql ElonDB",
+    "db:destroy": "dropdb ElonDB",
     "db:reset": "npm run db:destroy ; npm run db:create && npm run db:init",
     "test": "mocha",
     "test:watch": "mocha -w"
