@@ -24,3 +24,4 @@ create table facts (
 	id serial primary key,
 	saying varchar(500)
 );
+

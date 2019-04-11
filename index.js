@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: true })); // use this middleware!
 
 const User = require('./models/users');
 const Space = require('./models/space');
-const Comments = require('./models/comments');
+const Facts = require('./models/facts');
 //console.log('this is my user model', User);
 
 app.get('/login', (req, res) => {
@@ -104,14 +104,11 @@ app.get('/login', (res, req) => {
     })
 })
 
-app.get('/dashboard', async (req, res) => {
-    console.log('GETting the Dashboard')
-    res.render('dashboard')
-    //const theUnicorns = await Unicorn.getByUserId(2);
-    //res.json(theUnicorns)
-    //console.log(theUnicorns);
+// app.get('/dashboard', async (req, res) => {
+//     //console.log('GETting the Dashboard')
+//     res.render('dashboard')
     
-});
+// });
     
 
 
@@ -127,6 +124,34 @@ app.get('/users/:id', async (req, res) => {
     const {id} = req.params;
     const theUser = await User.getById(id);
     res.json(theUser);
+});
+
+app.get('/dashboard', async (req, res) => {
+    console.log('GETting the Dashboard')
+    const theFacts = await Facts.getRandom();
+    //res.json(theFacts)
+    console.log('======================');
+    console.log(theFacts);
+    console.log('^^^^^^^^^^^^^^^^^^^^^^');
+    
+    // const eachFact = theFacts.map((factData) => {
+    //     const theFacts = new Facts(
+    //         factData.id,
+    //         factData.saying,
+            
+    //     );
+    //     console.log(theFacts);
+    //     return theFacts;
+    //     //console.log(eachFact)
+    // })
+    res.render('dashboard', {
+        locals: {
+            fact: theFacts.id,
+            saying: theFacts.saying
+        }
+    })
+
+    // console.log();
 });
 
 app.listen(port, () => {
