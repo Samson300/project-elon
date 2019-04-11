@@ -19,3 +19,15 @@ create table comments (
     user_id integer references users(id),
     space_id integer references space(id)
 );
+
+create table facts (
+	id serial primary key,
+	saying varchar(500)
+);
+
+create table comments (
+    id serial primary key,
+    content varchar(500), 
+    user_id integer references users(id),
+    space_id integer references space(id)
+);
