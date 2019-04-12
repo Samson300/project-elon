@@ -20,20 +20,24 @@ class User {
     static add(userData) {
         // do an insert into the database
         // using ($) so that pg-promise does *safe* interpolation
-        return db.one(`
+        return db.any(`
             insert into users 
                 (first_name, last_name, account_name, email, password)
             values 
                 ($1, $2, $3, $4, $5)
             returning id, first_name, last_name
-        `, [userData.first_name, userData.last_name, userData.account_name, userData.email, userData.password])
+        `, [userData.firstName, userData.lastName, userData.accountName, userData.email, userData.password])
         .then((data) => {
             console.log(data);
-            console.log("you did the thing! good job.");
-            console.log(`new user id is ${data.id}`);
-            return data.id;
+            const userInstance = new User(data.id, 
+                                                      data.first_name,
+                                                      data.last_name,
+                                                      data.account_name,
+                                                      data.email,
+                                                      data.password
+                                                     );
+                        return userInstance;
         })
-        // and return the id of the new user
     }
 
     // "static" means that the function is something
