@@ -20,20 +20,24 @@ class Comments {
         // using ($) so that pg-promise does *safe* interpolation
         return db.one(`
         insert into comments
-            (id, content, user_id, space_id)
+            (content, user_id)
         values 
-            ($1, $2, $3, $4)
-        returning id, content, user_id, space_id
-        `, [commentData.content, commentData.user_id, commentData.space_id])
+            ($1, $2)
+        returning content, user_id
+        `, [commentData.content, commentData.user_id])
             .then((data) => {
+                console.log('========================')
                 console.log(data);
                 console.log("you did the thing! good job.");
-                console.log(`new comment id is ${data.id}`);
-                return data.id;
+                //console.log(`new comment id is ${data.id}`);
+                return data;
             })
         // and return the id of the new comment
     }
-
+    static getById(id) {
+        console.log(`LOOK AT ME ===`, id);
+        
+    }
     static getByUserId(userId) {
         console.log(userId)
         return db.any(`select * from comments where user_id=${userId}`)
@@ -74,7 +78,6 @@ class Comments {
             })
 
     }
-
 
     static getAll() {
         return db.any(`select * from comments`)

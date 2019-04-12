@@ -1,5 +1,5 @@
 const User = require('../models/users');
-const Comments = require('../models/comments');
+const Comments = require('../models/old-comment-file');
 
 
 

@@ -41,6 +41,7 @@ app.use(express.urlencoded({ extended: true })); // use this middleware!
 const User = require('./models/users');
 const Space = require('./models/space');
 const Facts = require('./models/facts');
+const Comments = require('./models/old-comment-file');
 //console.log('this is my user model', User);
 
 app.get('/login', (req, res) => {
@@ -137,20 +138,10 @@ app.get('/dashboard', async (req, res) => {
     
     const theFacts = await Facts.getRandom();
     //res.json(theFacts)
-    console.log('======================');
-    console.log(theFacts);
-    console.log('^^^^^^^^^^^^^^^^^^^^^^');
+    // console.log('======================');
+    // //console.log(theFacts);
+    // console.log('^^^^^^^^^^^^^^^^^^^^^^');
     
-    // const eachFact = theFacts.map((factData) => {
-    //     const theFacts = new Facts(
-    //         factData.id,
-    //         factData.saying,
-            
-    //     );
-    //     console.log(theFacts);
-    //     return theFacts;
-    //     //console.log(eachFact)
-    // })
     res.render('dashboard', {
         locals: {
             fact: theFacts.id,
@@ -160,6 +151,24 @@ app.get('/dashboard', async (req, res) => {
 
     // console.log();
 });
+
+app.post('/dashboard', async (req, res) => {
+    console.log(req.body.content);
+    let commentData = {
+        content: req.body.content,
+        user_id: 1
+    };
+    theComments = await Comments.add(commentData);
+    //console.log()
+    res.redirect('/dashboard')
+})
+
+app.get('/dashboard/', async (req, res) => {
+    //console.log(req);
+    const content = req.body.content;
+    console.log(id);
+    console.log(content)
+} )
 
 setPassword=(newPassword) => {
     const salt = bcrypt.genSaltSync(10);
