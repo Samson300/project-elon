@@ -21,6 +21,7 @@ create table facts (
     
 );
 
+
 create table comments (
     id serial primary key,
     content varchar(500), 
