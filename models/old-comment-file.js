@@ -4,11 +4,11 @@ const Space = require('./space');
 
 class Comments {
 
-    constructor(id, content, user_id, space_id) {
+    constructor(id, content, user_id, fact_id) {
         this.id = id;
         this.content = content;
         this.userId = user_id;
-        this.spaceId = space_id;
+        this.factId = fact_id;
     }
 
     static delete(id) {
@@ -20,24 +20,24 @@ class Comments {
         // using ($) so that pg-promise does *safe* interpolation
         return db.one(`
         insert into comments
-            (content, user_id)
+            (content, user_id, fact_id)
         values 
-            ($1, $2)
-        returning content, user_id
-        `, [commentData.content, commentData.user_id])
+            ($1, $2, $3)
+        returning content, user_id, fact_id
+        `, [commentData.content, commentData.user_id, commentData.fact_id])
             .then((data) => {
-                console.log('========================')
-                console.log(data);
-                console.log("you did the thing! good job.");
+                // console.log('========================')
+                // console.log(data);
+                // console.log("you did the thing! good job.");
                 //console.log(`new comment id is ${data.id}`);
                 return data;
             })
         // and return the id of the new comment
     }
-    static getById(id) {
-        console.log(`LOOK AT ME ===`, id);
+    // static getById(id) {
+    //     console.log(`LOOK AT ME ===`, id);
         
-    }
+    // }
     static getByUserId(userId) {
         console.log(userId)
         return db.any(`select * from comments where user_id=${userId}`)
@@ -88,7 +88,7 @@ class Comments {
                         commentData.id,
                         commentData.content,
                         commentData.user_id,
-                        commentData.space_id,
+                        commentData.fact_id,
                     );
                     return aComment;
                 })
@@ -107,7 +107,7 @@ class Comments {
         update comments set 
             content='${this.content}',
             user_id='${this.userId}',
-            space_id='${this.spaceId}',
+            space_id='${this.factId}',
         where id=${this.id}
         `);
     }

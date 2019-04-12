@@ -141,19 +141,24 @@ app.get('/dashboard', async (req, res) => {
     // console.log('======================');
     // //console.log(theFacts);
     // console.log('^^^^^^^^^^^^^^^^^^^^^^');
-    
+    const theComments = await Comments.getAll();
+    console.log('===================')
+    console.log(theComments);
+    console.log('^^^^^^^^^^^^^^^^^^');
+
     res.render('dashboard', {
         locals: {
             fact: theFacts.id,
-            saying: theFacts.saying
+            saying: theFacts.saying,
+            comments: theComments
         }
-    })
+    });
 
     // console.log();
 });
 
 app.post('/dashboard', async (req, res) => {
-    console.log(req.body.content);
+    //console.log(req.body.content);
     let commentData = {
         content: req.body.content,
         user_id: 1
@@ -163,12 +168,10 @@ app.post('/dashboard', async (req, res) => {
     res.redirect('/dashboard')
 })
 
-app.get('/dashboard/', async (req, res) => {
-    //console.log(req);
-    const content = req.body.content;
-    console.log(id);
-    console.log(content)
-} )
+// app.get('/dashboard/', async (req, res) => {
+//     //console.log(req);
+    
+// } )
 
 setPassword=(newPassword) => {
     const salt = bcrypt.genSaltSync(10);

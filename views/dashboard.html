@@ -74,11 +74,16 @@
     <div>
         <form 
         action="/dashboard"
-        method="POST"
-        >
+        method="POST">
             <input value="" type="text" name="content"/>
             <input type="submit"/>
         </form>
     </div>
+    <ul>
+        ${
+            comments.map(singleComment => `<li>${singleComment.content}</li>`).join('')
+        }
+    </ul>
+    <p>HELLO FUTURE DEVELOPERS</p>
 </body>
 </html>

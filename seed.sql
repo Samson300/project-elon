@@ -52,6 +52,6 @@ values
 insert into comments
 	(content, user_id, fact_id)
 values
-	('What a great fact!', '1'),
-	('Outstanding!', '1'),
-	('Yippee...You are doing a thing!', '2' );
+	('What a great fact!', '1', '10'),
+	('Outstanding!', '1', '15'),
+	('Yippee...You are doing a thing!', '2', '20' );
