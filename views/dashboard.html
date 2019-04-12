@@ -82,11 +82,51 @@
             ul {
                 list-style: none;
             }
+
+            .marked {
+                flex-wrap: wrap;
+                background-color: lightgreen;
+              }
+              
+              .unmarked {
+                background-color: lightblue;
+              }
         </style>
+        
         <!-- pulls in data from index file -->
         <p>${saying}</p>
-        
     </div>
+
+        <!--LIKE/UNLIKE BUTTONS  -->
+    <div class=comData>
+    <button class="marked">
+        Like
+      </button>
+      <button class="unmarked">
+        Unlike
+      </button>
+<script>
+    $('button.marked, button.unmarked').on('click', function(e) {
+        var $targetButton = $(e.target);
+        if ($targetButton.hasClass('marked')) {
+            onMarkedButtonClick($targetButton);
+        } else if ($targetButton.hasClass('unmarked')) {
+            onUnmarkedButtonClick($targetButton);
+        }
+      });
+      
+      function onMarkedButtonClick($button) {
+        $button.removeClass('marked');
+        $button.addClass('unmarked');
+      }
+      
+      function onUnmarkedButtonClick($button) {
+        $button.removeClass('unmarked');
+        $button.addClass('marked');
+      }
+    </script>
+    </div>
+    <!-- COMMENTS -->
     <div class='comData'>
         <form 
         action="/dashboard"
@@ -100,6 +140,8 @@
             comments.map(singleComment => `<li>${singleComment.content}</li>`).join('')
         }
     </ul>
+
     </div>
+    
 </body>
 </html>
