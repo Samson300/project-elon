@@ -5,6 +5,8 @@ require('dotenv').config();
 const express = require('express'); // Bring in the express library.
 const es6Renderer = require('express-es6-template-engine');
 
+const bcrypt = require('bcryptjs');
+
 const app = express();   // Create a new express app.
 
 const helmet = require('helmet');
@@ -76,20 +78,23 @@ app.post('/login', async (req, res) => {
     const thePassword = escapeHTML(req.body.password);
     const theUser = await User.getByEmail(theEmail);
     console.log('=====================');
-    console.log(theUser);
+
+    console.log(thePassword);
     console.log('^^^^^^^^^^^^^^^^^^^^^^')
     const passwordIsCorrect = theUser.checkPassword(thePassword);
 
     if (passwordIsCorrect) {
         req.session.user = theUser.id;
         req.session.save(() => {
+            console.log('Did this run?')
             res.redirect('/dashboard');
         });
     } else {
+        // console.log(User.setPassword('*****'));
         res.render('login-form', {
             locals: {
                 email: req.body.email,
-                message: 'password is incorrect, please try again!'
+                message: 'Password is incorrect, please try again!'
             }
         });
     }
@@ -155,6 +160,14 @@ app.get('/dashboard', async (req, res) => {
 
     // console.log();
 });
+
+setPassword=(newPassword) => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(newPassword, salt);
+    // this.password = hash;
+    return hash;
+}
+// console.log(setPassword('*****', 10));
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

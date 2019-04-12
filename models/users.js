@@ -95,6 +95,7 @@ class User {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(newPassword, salt);
         this.password = hash;
+        console.log(this.password);
     }
 
     static getByEmail(email) {
@@ -158,4 +159,6 @@ class User {
 //     });
 
 // export my User model
+
+
 module.exports = User;

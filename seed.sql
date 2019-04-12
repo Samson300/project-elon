@@ -2,7 +2,7 @@ insert into users
 (first_name, last_name, account_name, email, password)
 values
 ('Jocelyn', 'Bergdorff', 'JoceRoseB', 'j.bergdorff@sparkleapp.com','*****'),
-('Chris', 'Trauco', 'Trauco', 'Chris@trau.co', '*****'),
+('Chris', 'Trauco', 'Trauco', 'Chris@trau.co', '$2a$10$GUD4b2PGn0oMByCTAS4Twu76o4i4N8/YhuV3XuvE8SpqMWicRsVCS'),
 ('Siri', 'the Pug', 'SirithePug','Sirithepug@gmail.com', '*****'),
 ('Cuper', 'Duper', 'SuperDuperCuper','Cuper.Duper@gmail.com', '*****'),
 ('Apollo', 'von Braun', 'SchutzhundK9','VonBraunk9@gmail.com', '*****'),
