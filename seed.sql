@@ -49,3 +49,9 @@ values
 ('Your weight on the moon is 16.5% of your weight on earth.'),
 ('The earth''s deepest known point equals to 24.5 Empire State Buildings end to end.');
 
+insert into comments
+	(content, user_id, fact_id)
+values
+	('What a great fact!', '1', '10'),
+	('Outstanding!', '1', '15'),
+	('Yippee...You are doing a thing!', '2', '20' );
