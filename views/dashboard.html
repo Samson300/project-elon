@@ -5,31 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Gloria+Hallelujah|Underdog" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script scr="/models/facts.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 </head>
-<body>
+<body>        
+
         <!-- Adds styling to page -->
         <style type="text/css">
             body {
-                background-image: url('https://i.kinja-img.com/gawker-media/image/upload/s--tppk5Bdm--/c_scale,f_auto,fl_progressive,q_80,w_800/ohnsrbkzuwreffocgte9.jpg');
+                background: rgba(0,0,0,.3);          
                 background-blend-mode: difference;
                 background-size: 100vw;
+                font-family: 'Amatic SC', cursive;
+
 
             }
             h1, h4, tr, td, th {
                 text-align: center;
-                color: Black;
-                text-shadow: 2px 2px silver;
+                color: white;
 
             }
 
             h1 {
-                font-size: 4rem;
+                font-size: 8rem;
+                text-shadow: 2px 2px black;
+
             }
 
             h4 {
@@ -39,14 +44,30 @@
             tr, td {
                 font-size: 2rem;
             }
+
+            .widget {
+                display: flexbox;
+                flex-direction: row;
+                width: 20%;
+                height: 20%;
+                background: rgba(255,255,255,.8);
+            }
             .table {
                 margin-top: 8rem;
             }
+
+        
             
         </style>
     
-        
-    <!-- Page headings -->
+        <!-- Weather Widget -->
+
+        <a class="weatherwidget-io" href="https://forecast7.com/en/33d75n84d39/atlanta/?unit=us" data-label_1="ATLANTA" data-label_2="WEATHER" data-font="Ubuntu" data-icons="Climacons Animated" data-theme="weather_one" >ATLANTA WEATHER</a>
+            <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            </script>
+
+        <!-- Page headings -->
     <h1>Welcome to your dashboard</h1>
         <!-- Styles the facts box -->
     <div class='facts'>
@@ -57,22 +78,31 @@
 
             .facts {
                 display: flex;
+                font-size: 1em;
                 margin-top: 4em;
+                margin-left: 60%;
                 flex-wrap: none;
-                margin-left: 25%;
-                justify-content: center;
-                text-align: center;
                 background: black;
                 color: white;
                 text-shadow: none;
-                width: 50%;
+                width: 30%;
                 height: 100%;
+                text-align: center;
+                border-radius: 2%;
+
             }
             .comData {
+                padding: none;
                 background: rgba(255,255,255,.8);
-                width: 50%;
-                margin-left: 25%;
+                width: 30%;
+                margin-left: 60%;
                 text-align: center;
+                max-height: 200px;
+                overflow: scroll;
+                margin-bottom: 0%;
+                font-family: 'Gloria Hallelujah', cursive;
+                border-radius: 2%;
+
             }
 
             form {
