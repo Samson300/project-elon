@@ -50,7 +50,7 @@ class Comments {
                         commentData.id,
                         commentData.content,
                         commentData.user_id,
-                        commentData.space_id,
+                        commentData.fact_id,
                     );
                     return theComments;
                 });
@@ -59,19 +59,19 @@ class Comments {
         //     return null;
        
     }
-    static getBySpaceId(spaceId) {
-        console.log(spaceId)
-        return db.any(`select * from comments where space_id=${spaceId}`)
+    static getByFactId(fact_id) {
+        console.log(fact_id)
+        return db.any(`select * from comments where fact_id=${fact_id}`)
             
             .then((arrayOfComments) => {
         
                 //console.log(arrayOfComments);
-                return arrayOfComments.map((CommentData) => {
+                return arrayOfComments.map((commentData) => {
                     const theComments = new Comments(
                         commentData.id,
                         commentData.content,
                         commentData.user_id,
-                        commentData.space_id,
+                        commentData.fact_id,
                     );
                     return theComments;
                 });
