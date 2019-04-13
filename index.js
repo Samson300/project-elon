@@ -141,16 +141,19 @@ app.get('/dashboard', async (req, res) => {
     // console.log('======================');
     // //console.log(theFacts);
     // console.log('^^^^^^^^^^^^^^^^^^^^^^');
+    //const {fact_id} = req.params;
+    const factsById = await Comments.getByFactId(10);
     const theComments = await Comments.getAll();
     console.log('===================')
-    console.log(theComments);
+    console.log(factsById);
     console.log('^^^^^^^^^^^^^^^^^^');
 
     res.render('dashboard', {
         locals: {
             fact: theFacts.id,
             saying: theFacts.saying,
-            comments: theComments
+            comments: theComments,
+            factsById: factsById.fact_id
         }
     });
 
