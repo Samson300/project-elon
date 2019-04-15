@@ -108,7 +108,7 @@ app.get('/login', (res, req) => {
             message: ''
         }
     })
-})
+});
 
 // app.get('/dashboard', async (req, res) => {
 //     //console.log('GETting the Dashboard')
@@ -127,6 +127,7 @@ app.get('/about', async (req, res) => {
     console.log('GETting About Us Page');
     res.render('about');
 });
+
 
 app.get('/users/:id', async (req, res) => {
     // How to grab a piece out of req.params (or any object):
@@ -149,9 +150,9 @@ app.get('/dashboard', async (req, res) => {
     //const {fact_id} = req.params;
     const factsById = await Comments.getByFactId(`1`);
     const theComments = await Comments.getAll();
-    console.log('===================')
-    console.log(factsById);
-    console.log('^^^^^^^^^^^^^^^^^^');
+    // console.log('===================')
+    // console.log(factsById);
+    // console.log('^^^^^^^^^^^^^^^^^^');
 
     res.render('dashboard', {
         locals: {
