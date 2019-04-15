@@ -123,6 +123,11 @@ app.get('/users', async (req, res) => {
     res.json(allUsers);
 });
 
+app.get('/about', async (req, res) => {
+    console.log('GETting About Us Page');
+    res.render('about');
+});
+
 app.get('/users/:id', async (req, res) => {
     // How to grab a piece out of req.params (or any object):
     // const id = req.params.id;
@@ -142,7 +147,7 @@ app.get('/dashboard', async (req, res) => {
     // //console.log(theFacts);
     // console.log('^^^^^^^^^^^^^^^^^^^^^^');
     //const {fact_id} = req.params;
-    const factsById = await Comments.getByFactId(`${fact_id}`);
+    const factsById = await Comments.getByFactId(`1`);
     const theComments = await Comments.getAll();
     console.log('===================')
     console.log(factsById);
