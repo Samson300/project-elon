@@ -142,7 +142,7 @@ app.get('/dashboard', async (req, res) => {
     // //console.log(theFacts);
     // console.log('^^^^^^^^^^^^^^^^^^^^^^');
     //const {fact_id} = req.params;
-    const factsById = await Comments.getByFactId(`${fact_id}`);
+    const factsById = await Comments.getByFactId(`1`);
     const theComments = await Comments.getAll();
     console.log('===================')
     console.log(factsById);
