@@ -123,6 +123,11 @@ app.get('/users', async (req, res) => {
     res.json(allUsers);
 });
 
+app.get('/about', async (req, res) => {
+    console.log('GETting About Us Page');
+    res.render('about');
+});
+
 app.get('/users/:id', async (req, res) => {
     // How to grab a piece out of req.params (or any object):
     // const id = req.params.id;
