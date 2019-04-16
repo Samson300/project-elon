@@ -5,173 +5,229 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-
+    <!-- LINKS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Gloria+Hallelujah|Underdog" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- SCRIPTS -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script scr="/models/facts.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- NASA API -->
+    <script>
+        var url = "https://api.nasa.gov/planetary/apod?api_key=4BAmv7WkIvjk61zemVVplC0dZF8XNiRsLVgVsc65";
+        $.ajax({
+            url: url,
+            success: function(result){
+            if("copyright" in result) {
+                $("#copyright").text("Image Credits: " + result.copyright);
+            }
+            else {
+                $("#copyright").text("Image Credits: " + "Public Domain");
+            }
+            
+            if(result.media_type == "video") {
+                $("#apod_img_id").css("display", "none"); 
+                $("#apod_vid_id").attr("src", result.url);
+            }
+            else {
+                $("#apod_vid_id").css("display", "none"); 
+                $("#apod_img_id").attr("src", result.url);
+            }
+            $("#reqObject").text(url);
+            $("#returnObject").text(JSON.stringify(result, null, 4));  
+            $("#apod_explaination").text(result.explanation);
+            $("#apod_title").text(result.title);
+            }
+        });
+    </script>   
+
+    <!-- STYLES -->
+    <style type="text/css">
+        body {
+            background: rgba(0,0,0,.3);          
+            background-blend-mode: difference;
+            background-size: 100vw;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        h1, h4, tr, td, th {
+            text-align: center;
+            color: white;
+            margin-top: 2rem;
+        }
+        h1 {
+            font-size: 5rem;
+            text-shadow: 2px 2px black;
+        }
+        h4 {
+            font-size: 2rem;
+        }
+        tr, td {
+            font-size: 2rem;
+        }
+        .widget {
+            display: flexbox;
+            flex-direction: row;
+            width: 20%;
+            height: 20%;
+            background: rgba(255,255,255,.8);
+        }
+        .table {
+            margin-top: 8rem;
+        }
+        p {
+            font-size: 2em;
+        }
+        .weatherwidget-io{
+            margin-top: 35px;
+        }
+        .facts {
+            display: flex;
+            font-size: 1em;
+            margin-top: 4em;
+            margin-left: 30%;
+            flex-wrap: none;
+            background: black;
+            color: white;
+            text-shadow: none;
+            width: 50%;
+            height: 100%;
+            text-align: center;
+            border-radius: 2%;
+        }
+        .comData {
+            padding: none;
+            background: rgba(255,255,255,.8);
+            width: 50%;
+            margin-left: 30%;
+            text-align: center;
+            max-height: 200px;
+            overflow: scroll;
+            margin-bottom: 0%;
+            font-family: 'Gloria Hallelujah', cursive;
+            border-radius: 2%;
+            margin-bottom: 2em;
+        }
+        .nasa-img {
+            text-align: center;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .nasa-data {
+            padding: 40px;
+            font-size: 1em;
+        }
+        form {
+            justify-content: center;
+        }
+        ul {
+            list-style: none;
+        }
+    </style>
+
 </head>
-<body>        
-
-        <!-- Adds styling to page -->
-        <style type="text/css">
-            body {
-                background: rgba(0,0,0,.3);          
-                background-blend-mode: difference;
-                background-size: 100vw;
-                font-family: 'Amatic SC', cursive;
-
-
-            }
-            h1, h4, tr, td, th {
-                text-align: center;
-                color: white;
-
-            }
-
-            h1 {
-                font-size: 8rem;
-                text-shadow: 2px 2px black;
-
-            }
-
-            h4 {
-                font-size: 2rem;
-            }
-
-            tr, td {
-                font-size: 2rem;
-            }
-
-            .widget {
-                display: flexbox;
-                flex-direction: row;
-                width: 20%;
-                height: 20%;
-                background: rgba(255,255,255,.8);
-            }
-            .table {
-                margin-top: 8rem;
-            }
+<body id="myPage">     
 
         
-            
-        </style>
     
-        <!-- Weather Widget -->
+        
+<!-- Sidebar on click -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
+          <i class="fa fa-remove"></i>
+        </a>
+        <a href="/about" class="w3-bar-item w3-button">About</a>
+        <a href="/about" class="w3-bar-item w3-button">Contact</a>
+        <a href="/about" class="w3-bar-item w3-button">Logout</a>
+      
+        
+      </nav>
+      
+      <!-- Navbar -->
+      <div class="w3-top">
+       <div class="w3-bar w3-theme-d2 w3-left-align">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+        <a href="/about" class="w3-bar-item w3-button">About</a>
+        <a href="/about" class="w3-bar-item w3-button">Contact</a>
+        <a href="/about" class="w3-bar-item w3-button">Logout</a>
+        
+      </div>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
+       </div>
+      
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+            <a href="/about" class="w3-bar-item w3-button">About</a>
+            <a href="/about" class="w3-bar-item w3-button">Contact</a>
+            <a href="/about" class="w3-bar-item w3-button">Logout</a>
+      
+          <a href="#" class="w3-bar-item w3-button">Search</a>
+        </div>
+      </div>
 
-        <a class="weatherwidget-io" href="https://forecast7.com/en/33d75n84d39/atlanta/?unit=us" data-label_1="ATLANTA" data-label_2="WEATHER" data-font="Ubuntu" data-icons="Climacons Animated" data-theme="weather_one" >ATLANTA WEATHER</a>
-            <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-            </script>
+
+      <!-- Weather Widget -->
+
+    <a class="weatherwidget-io" href="https://forecast7.com/en/33d75n84d39/atlanta/?unit=us" data-label_1="ATLANTA" data-label_2="WEATHER" data-font="Ubuntu" data-icons="Climacons Animated" data-theme="weather_one" >ATLANTA WEATHER</a>
+    <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
 
         <!-- Page headings -->
-    <h1>Welcome to your dashboard</h1>
-        <!-- Styles the facts box -->
-    <div class='facts'>
-        <style>
-            p {
-                font-size: 2em;
-            }
+    <h1>Nasa Image of the Day</h1>
 
-            .facts {
-                display: flex;
-                font-size: 1em;
-                margin-top: 4em;
-                margin-left: 60%;
-                flex-wrap: none;
-                background: black;
-                color: white;
-                text-shadow: none;
-                width: 30%;
-                height: 100%;
-                text-align: center;
-                border-radius: 2%;
-
-            }
-            .comData {
-                padding: none;
-                background: rgba(255,255,255,.8);
-                width: 30%;
-                margin-left: 60%;
-                text-align: center;
-                max-height: 200px;
-                overflow: scroll;
-                margin-bottom: 0%;
-                font-family: 'Gloria Hallelujah', cursive;
-                border-radius: 2%;
-
-            }
-
-            form {
-                justify-content: center;
-            }
-
-            ul {
-                list-style: none;
-            }
-
-            .marked {
-                flex-wrap: wrap;
-                background-color: lightgreen;
-              }
-              
-              .unmarked {
-                background-color: lightblue;
-              }
-        </style>
-        
-        <!-- pulls in data from index file -->
-        <p>${saying}</p>
+    <div class="nasa-img">
+        <img id="apod_img_id" width="500px"/>
+    
+        <iframe id="apod_vid_id" type="text/html" width="640" height="385" frameborder="0"></iframe>
+        <p id="copyright"></p>
+    </div>
+    <div class="nasa-data">
+        <h3 id="apod_title"></h3>
+        <p id="apod_explaination"></p>
+        <br/>
     </div>
 
-        <!--LIKE/UNLIKE BUTTONS  -->
-    <div class=comData>
-    <button class="marked">
-        Like
-      </button>
-      <button class="unmarked">
-        Unlike
-      </button>
-<script>
-    $('button.marked, button.unmarked').on('click', function(e) {
-        var $targetButton = $(e.target);
-        if ($targetButton.hasClass('marked')) {
-            onMarkedButtonClick($targetButton);
-        } else if ($targetButton.hasClass('unmarked')) {
-            onUnmarkedButtonClick($targetButton);
-        }
-      });
-      
-      function onMarkedButtonClick($button) {
-        $button.removeClass('marked');
-        $button.addClass('unmarked');
-      }
-      
-      function onUnmarkedButtonClick($button) {
-        $button.removeClass('unmarked');
-        $button.addClass('marked');
-      }
-    </script>
-    </div>
     <!-- COMMENTS -->
-    <div class='comData'>
-        <form 
-        action="/dashboard"
-        method="POST">
-            <input value="" type="text" name="content"/>
-            <input type="submit"/>
-        </form>
-    
-    <ul>
-        ${
-            comments.map(singleComment => `<li>${singleComment.content}</li>`).join('')
-        }
-    </ul>
-        <p>${factsById}</p>
+    <!-- pulls in data from index file -->
+    <div class='facts'>
+    <p>${saying}</p>
     </div>
+
+
+    <div class='comData'>
+            <form 
+            action="/dashboard"
+            method="POST">
+                <input value="" type="text" name="content"/>
+                <input type="submit"/>
+            </form>
+        <ul>
+            ${
+                comments.map(singleComment => `<li>${singleComment.content}</li>`).join('')
+            }
+        </ul>
+            <p></p>
+        </div>
+        <div class="container"></div>
     
+        <footer class="footer">
+            <div class="container-fluid">
+              <nav class="float-left">
+            
+              </nav>
+              <div class="copyright float-right">
+                &copy;
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="material-icons">love</i> by
+                <a href="/about" target="_blank">Project Elon</a> for a better web.
+              </div>
+            </div>
+          </footer>
 </body>
 </html>
