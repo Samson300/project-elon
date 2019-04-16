@@ -30,7 +30,7 @@ values
 ('Eating Salmon helps hair grow faster.'),
 ('It only takes 6 minutes for brain cells to react to alcohol.'),
 ('Rain contains Vitamin b12.'),
-('Hot eater can freeze faster than cold water, in some circumstances.'),
+('Hot water can freeze faster than cold water, in some circumstances.'),
 ('During photosynthesis, plants emit light, called fluorescence, that humans can not see.'),
 ('Sunflowers can be used to clean up radioactive waste.'),
 ('It would take light 100,000 years to travel from one end of the Milky Way galaxy to the other.'),
