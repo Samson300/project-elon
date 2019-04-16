@@ -88,7 +88,7 @@ app.post('/login', async (req, res) => {
         req.session.user = theUser.id;
         req.session.save(() => {
             console.log('Did this run?')
-            res.redirect('/dashboard');
+            res.redirect('/user');
         });
     } else {
         // console.log(User.setPassword('*****'));
