@@ -88,7 +88,7 @@ app.post('/login', async (req, res) => {
         req.session.user = theUser.id;
         req.session.save(() => {
             console.log('Did this run?')
-            res.redirect('/dashboard');
+            res.redirect('/user');
         });
     } else {
         // console.log(User.setPassword('*****'));
@@ -118,9 +118,8 @@ app.get('/login', (res, req) => {
     
 
 
-app.get('/users', async (req, res) => {
-    const allUsers = await User.getAll();
-    res.json(allUsers);
+app.get('/user', async (req, res) => {
+    res.render('user')
 });
 
 app.get('/about', async (req, res) => {
@@ -128,6 +127,15 @@ app.get('/about', async (req, res) => {
     res.render('about');
 });
 
+app.get('/map', async (req, res) => {
+    console.log('GETting the map')
+    res.render('map')
+});
+
+app.get('/notifications', async (req, res) => {
+    console.log('GETting your notifications');
+    res.render('notifications')
+});
 
 app.get('/users/:id', async (req, res) => {
     // How to grab a piece out of req.params (or any object):
