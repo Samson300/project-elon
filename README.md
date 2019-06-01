@@ -5,3 +5,4 @@ Project Elon is a dashboard that pulls a different science image with facts abou
 
 <img src="/screenshots/Screen Shot 2019-06-01 at 10.59.15 AM.png">
 <img src="/screenshots/Screen Shot 2019-06-01 at 10.59.54 AM.png">
+<img src="/screenshots/Screen Shot 2019-06-01 at 11.00.23 AM.png">
